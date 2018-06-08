@@ -1,1 +1,1 @@
-#Proclamation#
+Proclamation
