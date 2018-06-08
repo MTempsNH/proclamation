@@ -1,0 +1,22 @@
+{
+  "name": "proclamation",
+  "version": "0.1.0",
+  "description": "A chatbot command line test initiator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "proclamation": "./index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.230.1",
+    "commander": "^2.15.1",
+    "mz": "^2.7.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
