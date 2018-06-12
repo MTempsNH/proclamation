@@ -21,6 +21,7 @@ function proclamation (params){
          * @return Promise
          */
         lexUtteranceToPrompt: function(intent){
+            params.inputText = intent;
 
             return new Promise((resolve, reject) => {
 
