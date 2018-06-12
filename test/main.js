@@ -1,5 +1,5 @@
 /**
- * Created by n0204620 on 6/6/18.
+ * Created by Mark on 6/6/18.
  */
 var assert = require('assert');
 var proclamation = require('../index.js')({
@@ -19,7 +19,9 @@ describe('Filter params for postText request', function() {
 
             var obj = proclamation.postTextParamFilter(params);
 
-            assert.equal([1,2,3].indexOf(4), -1);
+            // Check if invalid region exists.
+            assert.notDeepEqual(params, obj);
+
         });
     });
 });

@@ -15,25 +15,28 @@ function proclamation (params){
 
     return {
         /**
-         * Take an intent that is passed and return through a callback the prompt that was returned
+         * Take an intent that is passed and return the prompt that was returned
          * by the Lex bot.
          * @param intent
-         * @param callback
+         * @return Promise
          */
-        lexUtteranceToPrompt: function(intent, callback){
+        lexUtteranceToPrompt: function(intent){
 
-            var _params = this.postTextParamFilter(params);
+            return new Promise((resolve, reject) => {
 
-            lexruntime.postText(_params, function(err, data){
-                if(err) {
-                    callback("AWS error", err);
-                } else {
-                    if(data && data.message){
-                        callback(data.message);
-                    }else{
-                        callback();
+                var _params = this.postTextParamFilter(params);
+
+                lexruntime.postText(_params, function(err, data){
+                    if(err) {
+                        reject("AWS error", err);
+                    } else {
+                        if(data && data.message){
+                            resolve(data.message);
+                        }else{
+                            resolve();
+                        }
                     }
-                }
+                });
             });
         },
 
