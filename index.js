@@ -1,4 +1,9 @@
-#!/usr/bin/env node
+/*!
+ * proclamation <https://github.com/MTempsNH/proclamation>
+ *
+ * Copyright (c) 2018, Mark Temple.
+ * Released under the MIT License.
+ */
 var AWS = require('aws-sdk');
 
 var lexruntime;
