@@ -4,14 +4,14 @@
  * Copyright (c) 2018, Mark Temple.
  * Released under the MIT License.
  */
-var AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
 
-var lexruntime;
+let lexruntime;
 const postTextParams = ['botName', 'botAlias', 'userId', 'inputText'];
 
-function proclamation (params){
+function proclamation(params) {
     if (!params || !params.region) {
-        throw new Error ('Proclamation region parameter is required');
+        throw new Error('Proclamation region parameter is required');
     }
 
     AWS.config.update({ region: params.region });
@@ -25,22 +25,20 @@ function proclamation (params){
          * @param intent
          * @return Promise
          */
-        lexUtteranceToPrompt: function(intent){
-            params.inputText = intent;
+        lexUtteranceToPrompt(intent) {
+            const awsObj = params;
+            awsObj.inputText = intent;
 
             return new Promise((resolve, reject) => {
+                const trimmedParams = this.postTextParamFilter(awsObj);
 
-                var _params = this.postTextParamFilter(params);
-
-                lexruntime.postText(_params, function(err, data){
-                    if(err) {
-                        reject("AWS error", err);
+                lexruntime.postText(trimmedParams, (err, data) => {
+                    if (err) {
+                        reject(new Error(err));
+                    } else if (data && data.message) {
+                        resolve(data.message);
                     } else {
-                        if(data && data.message){
-                            resolve(data.message);
-                        }else{
-                            resolve();
-                        }
+                        resolve();
                     }
                 });
             });
@@ -51,18 +49,18 @@ function proclamation (params){
          * @param parameters injected
          * @returns {*}
          */
-        postTextParamFilter: function(params) {
-
-            const filteredObj = Object.keys( params )
-                    .filter( item => postTextParams.includes(item))
-                    .reduce((obj, item) => {
-                            obj[item] = params[item];
-                        return obj;
-                    }, {});
+        /* eslint-disable no-param-reassign */
+        postTextParamFilter(awsParams) {
+            const filteredObj = Object.keys(awsParams)
+                .filter(item => postTextParams.includes(item))
+                .reduce((obj, item) => {
+                    obj[item] = params[item];
+                    return obj;
+                }, {});
 
             return filteredObj;
-        }
-    }
+        },
+    };
 }
 
 module.exports = proclamation;
