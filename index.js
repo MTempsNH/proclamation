@@ -9,6 +9,12 @@ const AWS = require('aws-sdk');
 let lexruntime;
 const postTextParams = ['botName', 'botAlias', 'userId', 'inputText'];
 
+/**
+ * Main
+ *
+ * @param AWS CLI parameters to initiate chatbot running in AWS
+ * @return {*}
+ */
 function proclamation(params) {
     if (!params || !params.region) {
         throw new Error('Proclamation region parameter is required');

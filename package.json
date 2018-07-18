@@ -1,29 +1,33 @@
 {
   "name": "proclamation",
   "version": "0.1.0",
-  "description": "A chatbot command line test initiator",
+  "description": "A chatbot command line test initiator. A local way to test your Amazon Lex chatbot with BDD feature files",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint src/**",
-    "test": "mocha test",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js"
+    "lint": "./node_modules/.bin/eslint src/**",
+    "prepublish": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/index.js",
+    "test": "mocha test"
   },
   "author": {
     "name": "Mark Temple",
     "url": "https://github.com/MTempsNH"
   },
+  "repository": "https://github.com/MTempsNH/proclamation",
+  "keywords": ["BDD", "Lex", "AWS", "cucumber", "feature files", "AWS SDK", "chatbot", "local testing"],
   "bugs": {
     "url": "https://github.com/MTempsNH/proclamation/issues"
   },
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "bin": {
-    "proclamation": "./index.js"
+    "proclamation": "dist/index.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.230.1",
-    "commander": "^2.15.1",
-    "mz": "^2.7.0"
+    "aws-sdk": "^2.230.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
