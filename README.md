@@ -17,7 +17,7 @@ Note: Your bot needs to be up and running in AWS and you need to have your local
 
 [AWS CLI] (https://aws.amazon.com/cli/)
 
-'''javascript
+```javascript
 Proclamation uses dependency injection for initialization; see below.
     const proclamation = require('proclamation')({
         botAlias: 'DEV',
@@ -26,4 +26,4 @@ Proclamation uses dependency injection for initialization; see below.
         region:'us-east-1',
         userId: 'lexCLI'
     });
-'''
+```
