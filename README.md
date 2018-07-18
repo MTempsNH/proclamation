@@ -17,8 +17,8 @@ Note: Your bot needs to be up and running in AWS and you need to have your local
 
 [AWS CLI] (https://aws.amazon.com/cli/)
 
-```javascript
 Proclamation uses dependency injection for initialization; see below.
+```javascript
     const proclamation = require('proclamation')({
         botAlias: 'DEV',
         botName: 'TheNameOfYourBot',
