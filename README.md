@@ -9,7 +9,9 @@ v2.230.1
 
 ### Installation
 
+```javascript
 npm install proclamation --save-dev
+```
 
 ###
 
